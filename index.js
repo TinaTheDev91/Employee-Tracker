@@ -2,6 +2,9 @@ const inquirer = require('inquirer');
 const viewEe = require('./queries/viewEe');
 const viewDept = require('./queries/viewDept');
 const viewRole = require('./queries/viewRole');
+const addDept = require('./queries/addDept');
+const addEe = require('./queries/addEe');
+const addRole = require('./queries/addRole');
 
 function chooseTask() {
     inquirer.prompt([
@@ -34,8 +37,16 @@ function chooseTask() {
             case 'View all employees':
                 task = new viewEe();
                 break;
-            default:
+            case 'Add a department':
+                task = new addDept();
                 break;
+            case 'Add a role':
+                task = new addRole();
+                break;
+            case 'Add an employee':
+                task = new addEe();
         }
     })
 }
+
+chooseTask();
