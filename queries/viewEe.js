@@ -1,11 +1,18 @@
 const connection = require('../config/connection');
 const cTable = require('console.table');
 
-connection.query(
-    'SELECT * FROM employee',
-    function(err, results) {
-      console.table(results); 
+class viewEe {
+    constructor() {}
+        generate() {
+            connection.promise().query("SELECT * FROM employee")
+            .then(([rows]) => {
+                return rows;
+            })
+
+            generate();
+        }
+        
+        
     }
-  );
 
   module.exports = viewEe;

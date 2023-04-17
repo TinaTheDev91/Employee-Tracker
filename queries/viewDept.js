@@ -1,11 +1,17 @@
 const connection = require('../config/connection');
 const cTable = require('console.table');
 
-connection.query(
-    'SELECT * FROM department',
-    function(err, results) {
-      console.table(results); 
+class viewDept {
+    constructor() {}
+        generate() {
+            connection.promise().query("SELECT * FROM department")
+            .then(([data]) => {
+                console.table(data)
+            })
+
+            generate();
+        }      
+        
     }
-  );
 
   module.exports = viewDept;

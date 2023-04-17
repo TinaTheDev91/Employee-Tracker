@@ -1,11 +1,19 @@
 const connection = require('../config/connection');
 const cTable = require('console.table');
 
-connection.query(
-    'SELECT * FROM role',
-    function(err, results) {
-      console.table(results); 
+class viewRole {
+    constructor() {}
+        generate() {
+            connection.promise().query("SELECT * FROM role")
+            .then(([rows]) => {
+                return rows;
+            })
+
+            generate();
+        }
+        
+        
     }
-  );
+
 
   module.exports = viewRole;
