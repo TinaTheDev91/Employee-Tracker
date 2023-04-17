@@ -6,7 +6,7 @@ class viewEe {
         generate() {
             connection.promise().query("SELECT * FROM employee")
             .then(([rows]) => {
-                return rows;
+                console.table(rows);
             })
 
             generate();
