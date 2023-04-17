@@ -8,7 +8,7 @@ function addDept() {
             type: 'input',
             message: 'What is the department id?',
             name: 'id',
-            validate: (id) => Number.isInteger(id) === true || 'Your id must be a unique integer'
+            validate: (id) => Number.isInteger(+id) == true || 'Your id must be a unique integer'
         },
         {
             type: 'input',
@@ -19,12 +19,18 @@ function addDept() {
     .then(res => {
         connection.query(
             `INSERT INTO department (id, dept_name) VALUES (${res.id}, "${res.name}");`,
-            function(err, results) {
-              console.table(results); 
+            function viewDept() {
+                connection.promise().query("SELECT * FROM department")
+                    .then(([data]) => {
+                        console.table(data)
+                        console.log(`Here is the updated table!`)
+                    })})
             }
-          );
+          );        
 
-    })
+    
 }
+
+
 
 module.exports = addDept;

@@ -1,18 +1,11 @@
 const connection = require('../config/connection');
 const cTable = require('console.table');
 
-class viewEe {
-    constructor() {}
-        generate() {
-            connection.promise().query("SELECT * FROM employee")
-            .then(([rows]) => {
-                console.table(rows);
-            })
-
-            generate();
-        }
-        
-        
-    }
+function viewEe() {
+    connection.promise().query("SELECT * FROM employee")
+        .then(([data]) => {
+            console.table(data)
+            console.log(`The table has been generated!`)
+        })}
 
   module.exports = viewEe;

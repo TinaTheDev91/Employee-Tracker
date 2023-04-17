@@ -8,7 +8,7 @@ function addRole() {
             type: 'input',
             message: 'What is the role id?',
             name: 'id',
-            validate: (id) => Number.isInteger(id) === true || 'Your id must be a unique integer'
+            validate: (id) => Number.isInteger(+id) == true || 'Your id must be a unique integer'
         },
         {
             type: 'input',
@@ -28,13 +28,18 @@ function addRole() {
     ])
     .then(res => {
         connection.query(
-            `INSERT INTO employee (id, title, salary, department_id) VALUES (${res.id}, "${res.title}", "${res.salary}", "${res.deptid}");`,
-            function(err, results) {
-              console.table(results); 
+            `INSERT INTO role (id, title, salary, department_id) VALUES (${res.id}, "${res.title}", ${res.salary}, ${res.deptid});`,
+            function viewRole() {
+                connection.promise().query("SELECT * FROM role")
+                    .then(([data]) => {
+                        console.table(data)
+                        console.log(`Here is the updated table!`)
+                    })})
             }
-          );
+          ); 
 
-    })
-}
+
+    }
+
 
 module.exports = addRole;

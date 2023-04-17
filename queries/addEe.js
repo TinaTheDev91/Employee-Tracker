@@ -8,7 +8,7 @@ function addEe() {
             type: 'input',
             message: 'What is the employee id?',
             name: 'id',
-            validate: (id) => Number.isInteger(id) === true || 'Your id must be a unique integer'
+            validate: (id) => Number.isInteger(+id) == true || 'Your id must be a unique integer'
         },
         {
             type: 'input',
@@ -23,23 +23,27 @@ function addEe() {
         {
             type: 'input',
             message: 'Role id?',
-            name: 'roleid'
+            name: 'role'
         },
         {
             type: 'input',
             message: 'Manager id?',
-            name: 'mgrid'
+            name: 'manager'
         }
     ])
     .then(res => {
         connection.query(
-            `INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (${res.id}, "${res.fname}", "${res.lname}", "${res.roleid}", "${res.mgrid}");`,
-            function(err, results) {
-              console.table(results); 
+            `INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (${res.id}, "${res.fname}", "${res.lname}", ${res.role}, ${res.manager});`,
+            function viewEe() {
+                connection.promise().query("SELECT * FROM employee")
+                    .then(([data]) => {
+                        console.table(data)
+                        console.log(`Here is the updated table!`)
+                    })})
             }
-          );
+          );        
 
-    })
-}
+    }
+
 
 module.exports = addEe;
