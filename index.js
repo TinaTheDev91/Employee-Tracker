@@ -5,6 +5,7 @@ const viewRole = require('./queries/viewRole');
 const addDept = require('./queries/addDept');
 const addEe = require('./queries/addEe');
 const addRole = require('./queries/addRole');
+const updateRole = require('./queries/updateRole');
 
 function chooseTask() {
     inquirer.prompt([
@@ -45,6 +46,9 @@ function chooseTask() {
                 break;
             case 'Add an employee':
                 task = new addEe();
+                break;
+            case 'Update an employee':
+                task = new updateRole();
         }
     })
 }
