@@ -29,6 +29,4 @@ Thank you to my instructor Suarav for teaching us MySQL fundamentals.
 
 This project referenced much of the code used for the Module 10 - Logo Generator. To view that repository, see the following link:
 
-https://github.com/TinaTheDev91/Employee-Tracker
-
-
+https://github.com/TinaTheDev91/Logo-Generator
